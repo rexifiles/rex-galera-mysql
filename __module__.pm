@@ -1,4 +1,4 @@
-package Rex::Ossec::Base; 
+package Rex::Galera::Mysql; 
 use Rex -base;
 use Rex::Ext::ParamLookup;
 
