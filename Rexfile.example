@@ -1,0 +1,16 @@
+use Rex -feature => ['1.0'];
+use Rex::Ext::ParamLookup;
+
+include qw/
+  Rex::Galera::Mysql
+  /;
+
+set connection => 'OpenSSH';
+user 'root';
+
+task "setup", make {
+
+  Rex::Galera::Mysql::setup(cluster_addresses => "192.168.1.1,192.168.1.2,192.168.2.1,192.168.2.2", 
+                            cluster_name => 'MyGaleraDB');
+};
+

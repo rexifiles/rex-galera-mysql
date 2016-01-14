@@ -1,0 +1,6 @@
+Name: Rex::Galera::Mysql
+Description: Installs mysql and galera API into a node. Set up a master, or add nodes. 
+Author: xarlos <xarlos@xarlos.me>
+License: Apache 2.0
+Require:
+  - Rex::Ext::ParamLookup
