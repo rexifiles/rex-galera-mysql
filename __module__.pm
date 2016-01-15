@@ -7,9 +7,15 @@ task 'setup', sub {
 
 	my $cluster_addresses = param_lookup "cluster_addresses", "127.0.0.1";  # eg: "192.168.10.10,192.168.10.11"
 	my $cluster_name      = param_lookup "cluster_name", "default";         # eg: "myGaleraCluster1"
-	my $node_name         = param_lookup "node_name", sub {                 # eg: Node1 (defaults to hostname)
-				return run(q!hostname!); };
+	my $node_name         = param_lookup "node_name";                       # Patch for now till hostname works. 
+
+	#/***************
+	# my $node_name         = param_lookup "node_name", sub {                 # eg: Node1 (defaults to hostname)
+				# return run(q!hostname!); };
+	# ***************/
+
 	my $master            = param_lookup "master", "no";                    # eg: 'yes'
+	my $root_pw           = param_lookup "root_pw", "r00tPass";
 
 	unless ( ! is_installed("mysql-server-5.5") ) {
 		say "Backing out as you already have mysql installed";
@@ -24,6 +30,9 @@ task 'setup', sub {
 		source    => 0;
 
 	update_package_db;
+
+	run qq!echo mysql-wsrep-server-5.6 mysql-server/root_password string ${root_pw} | debconf-set-selections!;
+	run qq!echo mysql-wsrep-server-5.6 mysql-server/root_password_again string ${root_pw} | debconf-set-selections!;
 
 	pkg "galera-3",
 		ensure    => "latest",
