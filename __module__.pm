@@ -11,7 +11,7 @@ task 'setup', sub {
 				return run(q!hostname!); };
 	my $master            = param_lookup "master", "no";                    # eg: 'yes'
 
-	unless ( is_installed("mysql-server-5.5") ) {
+	unless ( ! is_installed("mysql-server-5.5") ) {
 		say "Backing out as you already have mysql installed";
 		exit 1;
 	}
