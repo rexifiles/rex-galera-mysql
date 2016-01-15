@@ -60,10 +60,10 @@ task 'setup', sub {
 	service mysql => ensure => "started";
 };
 
-desc 'Remove ossec agent';
+desc 'Remove galera and mysql server';
 task 'clean', sub {
 
-	service ossec => "stopped";
+	service mysql => "stopped";
 
 	if ( is_installed("galera-3") ) {
 		remove package => "galera-3";
@@ -77,6 +77,9 @@ task 'clean', sub {
 		remove package => "mysql-wsrep-5.6";
 	};
 
-	repository remove => "ossec";
+	# Purge unrequired files
+	run(q!apt-get autoremove -y!);
+
+	repository remove => "galera";
 
 }
