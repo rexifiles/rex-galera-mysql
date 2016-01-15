@@ -57,10 +57,6 @@ task 'setup', sub {
 		service "mysql" => "start";
 	};
 
-	
-
- };
-
 	service mysql => ensure => "started";
 };
 
