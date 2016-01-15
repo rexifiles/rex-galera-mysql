@@ -60,7 +60,7 @@ task 'setup', sub {
 
 	# Add extra parameter if defined as the master (first) node
 	if ( $master eq 'yes' ) {
-		service "mysql", start => "systemctl start mysql --wsrep-new-cluster";
+		service "mysql", start => "service mysql start --wsrep-new-cluster";
 		service "mysql" => "start";
 	} else {
 		service "mysql" => "start";
