@@ -66,7 +66,7 @@ task 'setup', sub {
 		service "mysql" => "start";
 	};
 
-	service mysql => ensure => "started";
+	# service mysql => ensure => "started";
 };
 
 desc 'Remove galera and mysql server';
