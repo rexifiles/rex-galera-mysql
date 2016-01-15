@@ -17,7 +17,7 @@ task 'setup', sub {
 	}
 
 	repository "add" => "galera",
-		url      => "deb http://releases.galeracluster.com/debian",
+		url      => "http://releases.galeracluster.com/debian",
 		key_url  => "http://releases.galeracluster.com/GPG-KEY-galeracluster.com",
 		distro    => "jessie",
 		repository => "main",
