@@ -60,7 +60,7 @@ task 'setup', sub {
 
 	# Add extra parameter if defined as the master (first) node
 	if ( $master eq 'yes' ) {
-		run(q!service mysql start --wsrep-new-cluster!;
+		run qq!service mysql start --wsrep-new-cluster!;
 	} else {
 		service "mysql" => "start";
 	};
